@@ -1,0 +1,46 @@
+
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  errors:
+    avoid_unnecessary_containers: error
+    always_use_package_imports: error
+    avoid_relative_lib_imports: error
+    implementation_imports: error
+    unused_import: error
+    unused_local_variable: error
+    unnecessary_new: error
+    unnecessary_this: error
+    annotate_overrides: error
+    unnecessary_string_interpolations: error
+    avoid_print: error
+    todo: ignore
+    prefer_const_constructors_in_immutables: error
+    use_key_in_widget_constructors: error
+    non_constant_identifier_names: ignore
+    prefer_typing_uninitialized_variables: ignore
+    
+
+
+linter:
+ 
+  rules:
+    use_full_hex_values_for_flutter_colors: false
+    use_key_in_widget_constructors: true
+    prefer_const_constructors: false
+    prefer_const_constructors_in_immutables: true
+    prefer_const_declarations: false
+    prefer_const_literals_to_create_immutables: false
+    sized_box_for_whitespace: false
+    unnecessary_this: true
+    constant_identifier_names: false
+    prefer_typing_uninitialized_variables: false
+    no_leading_underscores_for_local_identifiers: false
+    use_build_context_synchronously: false
+    sort_child_properties_last: false
+    library_private_types_in_public_api: false
+    always_use_package_imports: true
+
+
+
+
