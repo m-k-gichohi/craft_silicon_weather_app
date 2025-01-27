@@ -35,7 +35,7 @@ git@github.com:m-k-gichohi/craft_silicon_weather_app.git
 
  3. Copy the  ```env.example``` file to ```env```   file inside the root folder of the project.
 
-4. Add ypur api key to the env file.
+4. Add your api key to the env file.
 
 5. After adding the key you need now to run the following command
 
