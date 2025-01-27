@@ -20,9 +20,39 @@ Before you start, ensure you have the following tools installed on your machine:
 
 ## Installation Steps
 
-### 1. Clone the Repository
+ 1. Clone the Repository
 
 Open your terminal or command prompt and run the following command:
 
 ```bash
-git clone https://github.com/<your-username>/<repository-name>.git
+git@github.com:m-k-gichohi/craft_silicon_weather_app.git
+```
+
+2. Then proceed to open the folder with your favorite IDE
+
+    After having the project open 
+
+
+ 3. Copy the  ```env.example``` file to ```env```   file inside the root folder of the project.
+
+4. Add ypur api key to the env file.
+
+5. After adding the key you need now to run the following command
+
+```bash 
+flutter pub get
+```
+
+5. Then run the following command  to generate the required files
+
+
+```bash
+dart run build_runner build
+```
+
+6. Once you are done building the files,
+Run
+```bash 
+flutter run
+```
+
