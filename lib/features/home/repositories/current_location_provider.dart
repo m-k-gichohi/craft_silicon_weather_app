@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:craft_silicon/features/home/model/locatin_model.dart';
 import 'package:craft_silicon/features/home/repositories/get_current_weather_provider.dart';
 import 'package:geolocator/geolocator.dart';
@@ -17,14 +19,11 @@ class CurrentLocationState extends StateNotifier<CoordinatesLocationModel> {
     _initializeLocation();
   }
 
-  /// Initialize location when the provider is created
   Future<void> _initializeLocation() async {
-    ref.read(currentLoaderProvider.notifier).state = true; // Start loading
-    await getPhonePosition(); // Fetch the phone position
-    ref.read(currentLoaderProvider.notifier).state = false; // End loading
+    ref.read(currentLoaderProvider.notifier).state = true;
+    await getPhonePosition();
   }
 
-  /// Get the current phone position using Geolocator
   Future<void> getPhonePosition() async {
     LocationPermission permission = await Geolocator.checkPermission();
 
@@ -43,14 +42,16 @@ class CurrentLocationState extends StateNotifier<CoordinatesLocationModel> {
 
       // List<Placemark> placemarks =
       //     await placemarkFromCoordinates(position.latitude, position.longitude);
-
+      log("message $position");
       CoordinatesLocationModel locations = CoordinatesLocationModel(
         latitude: position.latitude,
         longitude: position.longitude,
         // longitude: placemarks[0].administrativeArea,
       );
 
-      state = locations; // Update the state with the new location
+      state = locations;
+
+      ref.read(currentLoaderProvider.notifier).state = false;
     }
   }
 

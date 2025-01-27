@@ -1,10 +1,12 @@
 import 'package:craft_silicon/common/helpers/create_complex_json.dart';
+import 'package:craft_silicon/common/helpers/date_time_helpers.dart';
 import 'package:craft_silicon/common/helpers/sizes.dart';
 import 'package:craft_silicon/common/utils/colors.dart';
 import 'package:craft_silicon/common/utils/textstyle.dart';
 import 'package:craft_silicon/features/home/presentation/five_day_details_page.dart';
 import 'package:craft_silicon/features/home/repositories/get_5_day_weather_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ViewFiveDaysWeatherPage extends HookConsumerWidget {
@@ -13,6 +15,8 @@ class ViewFiveDaysWeatherPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final fiveDaysWeather = ref.watch(getFiveDaysWeatherDataProvider);
+
+    final savedTime = ref.watch(savedForecastTimeProvider);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -99,6 +103,27 @@ class ViewFiveDaysWeatherPage extends HookConsumerWidget {
                                   vertical: 8.0,
                                 ),
                               ),
+
+Gap(AppSizes.appHeight(10),),
+                                if (savedTime != 0)
+                    Column(
+                      children: [
+                        Text(
+                          "Last updated",
+                          style: fontSize14400.copyWith(
+                            color: CRAFTCOLORWHITE,
+                          ),
+                        ),
+                        Text(
+                          DateTimeHelpers.getFullDateTime(
+                            savedTime,
+                          ),
+                          style: fontSize14400.copyWith(
+                            color: CRAFTCOLORWHITE,
+                          ),
+                        ),
+                      ],
+                    ),
                           ],
                         );
                       },
@@ -106,10 +131,11 @@ class ViewFiveDaysWeatherPage extends HookConsumerWidget {
                       error: (error, stack) {
                         return Center(
                           child: Text(
-                            'Error Getting the current location',
+                            'Error Getting Forecast Data',
                           ),
                         );
                       }),
+                
                 ],
               ),
             ),

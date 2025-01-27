@@ -1,3 +1,4 @@
+import 'package:craft_silicon/common/helpers/offline/weather_db_helper.dart';
 import 'package:craft_silicon/common/helpers/scroll_behaviour.dart';
 import 'package:craft_silicon/features/home/presentation/splash_screen.dart';
 import 'package:craft_silicon/features/home/repositories/current_location_provider.dart';
@@ -7,8 +8,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await WeatherDbHelper.initDB();
 
   runApp(
     const ProviderScope(

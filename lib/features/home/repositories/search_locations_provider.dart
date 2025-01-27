@@ -46,7 +46,7 @@ class SearchLocationState
     );
 
         var url =
-        '${AppLicationUrls.mainUrl}geo/1.0/direct?q=$text&appid=${EnvKeys.apiKey}&units=metric';
+        '${AppLicationUrls.mainUrl}geo/1.0/direct?q=$text&appid=${EnvKeys.apiKey}&limit=5';
 
 
     final res = await dio.get(

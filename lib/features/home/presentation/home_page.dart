@@ -28,6 +28,8 @@ class HomePage extends HookConsumerWidget {
 
     final currentPageDescription = useState("");
 
+    final savedTime = ref.watch(savedWeatherTimeProvider);
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -288,24 +290,51 @@ class HomePage extends HookConsumerWidget {
                                                 const ViewFiveDaysWeatherPage()),
                                       );
                                     },
-                                  )
+                                  ),
+                                  if (savedTime != 0)
+                                    Column(
+                                      children: [
+                                        Text(
+                                          "Last updated",
+                                          style: fontSize14400.copyWith(
+                                            color: CRAFTCOLORWHITE,
+                                          ),
+                                        ),
+                                        Text(
+                                          DateTimeHelpers.getFullDateTime(
+                                            savedTime,
+                                          ),
+                                          style: fontSize14400.copyWith(
+                                            color: CRAFTCOLORWHITE,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                 ],
                               ),
                             ],
                           );
                         },
-                        loading: () =>
-                            Center(child: Column(
+                        loading: () => Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                CircularProgressIndicator(),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: AppSizes.appHeight(100)),
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
                               ],
-                            )),
+                            ),
                         error: (error, stack) {
+                          log("message");
                           return Center(
                             child: Text(
-                              'Error Getting the current location',
+                              'Error getting weather data',
                             ),
                           );
                         }),

@@ -43,7 +43,6 @@ dependencies:
   material_design_icons_flutter: ^7.0.7296
   riverpod_annotation: ^2.6.1
   envied: ^1.1.0
-  # cached_network_image: ^3.4.1
   geocoding: ^3.0.0
   permission_handler: ^11.3.1
   geolocator: ^13.0.2
@@ -52,6 +51,10 @@ dependencies:
   flutter_animate: ^4.5.2
   intl: ^0.20.2
   carousel_slider: ^5.0.0
+  sqflite: ^2.4.1
+  path: ^1.9.0
+  internet_connection_checker: ^3.0.1
+  connectivity_plus: ^6.1.2
 
 
 

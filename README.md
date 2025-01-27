@@ -1,16 +1,28 @@
 # craft_silicon
 
-A new Flutter project.
+# Flutter Project Setup Guide
 
-## Getting Started
+This guide explains how to set up and run the Flutter project after cloning it from the repository.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## Prerequisites
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Before you start, ensure you have the following tools installed on your machine:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **[Flutter SDK](https://flutter.dev/docs/get-started/install)** (version 3.0 or higher recommended)
+- **Dart SDK** (comes with Flutter)
+- **Git** (for cloning the repository)
+- **Android Studio** or **Xcode** (for emulators and building native apps)
+- An IDE such as **[VS Code](https://code.visualstudio.com/)** or **[Android Studio](https://developer.android.com/studio)**
+
+---
+
+## Installation Steps
+
+### 1. Clone the Repository
+
+Open your terminal or command prompt and run the following command:
+
+```bash
+git clone https://github.com/<your-username>/<repository-name>.git
