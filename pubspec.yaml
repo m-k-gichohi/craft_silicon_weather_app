@@ -50,6 +50,8 @@ dependencies:
   dio_smart_retry: ^7.0.1
   fluttertoast: ^8.2.10
   flutter_animate: ^4.5.2
+  intl: ^0.20.2
+  carousel_slider: ^5.0.0
 
 
 
@@ -87,7 +89,7 @@ flutter:
 
   assets:
     # - assets/images/
-    # - assets/icons/
+    - assets/icons/
     - .env
 
 

@@ -25,12 +25,10 @@ class _SplashScreenState extends State<SplashScreen> {
     }
 
     if (permission == LocationPermission.deniedForever) {
-      // Show dialog explaining why location is needed
       _showPermissionDeniedDialog();
     } else if (permission == LocationPermission.always ||
         permission == LocationPermission.whileInUse) {
-      // Proceed to home page after 2 seconds
-      Future.delayed(Duration(seconds: 3), () {
+      Future.delayed(Duration(seconds: 4), () {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (_) => HomePage()),
         );

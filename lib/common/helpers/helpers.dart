@@ -1,51 +1,44 @@
-// import 'package:okota_pay/core/imports.dart';
+class Helpers {
+  static String getWeatherImage(String input) {
+    String weather = input.toLowerCase();
+    String assetPath = 'assets/icons/';
+    switch (weather) {
+      case 'thunderstorm':
+        return '${assetPath}thunderstorm.jpg';
 
-// class Helpers {
-//   static saveIsSeen({required isSeen}) async {
-//     await secureStorages.write(key: 'isSeen', value: isSeen);
-//   }
+      case 'drizzle':
+      case 'rain':
+        return '${assetPath}rainy.jpg';
 
-//   static saveAccessToken({required accessToken}) async {
-//     await secureStorages.write(key: 'userToken', value: accessToken);
-//   }
+      case 'snow':
+        return '${assetPath}snow.jpg';
 
-//   static saveCurrentDate({required String date}) async {
-//     await secureStorages.write(key: 'currentDate', value: date);
-//   }
+      case 'clear':
+        return '${assetPath}sunny.jpg';
 
-//   static String getCompletePhoneNumber(PhoneNumber phoneNumber) {
-//     // String isoCode = phoneNumber.isoCode.toString();
-//     String countryCode = phoneNumber.countryCode;
-//     String nsn = phoneNumber.nsn;
+      case 'clouds':
+        return '${assetPath}cloud.jpg';
 
-//     String completeNumber = '+$countryCode$nsn';
-//     return completeNumber;
-//   }
+      case 'mist':
+      case 'fog':
+      case 'smoke':
+      case 'haze':
+      case 'dust':
+      case 'sand':
+      case 'ash':
+        return '${assetPath}fog.jpg';
 
-//   static int highestIndex(listData) {
-//     int highestValue = listData.lastIndexWhere((element) => true);
+      case 'squall':
+      case 'tornado':
+        return '${assetPath}storm-wind.jpg';
 
-//     return highestValue;
-//   }
+      default:
+        return '${assetPath}cloud.jpg';
+    }
+  }
 
-//   static validateStructure(String value) {
-//     Pattern pattern =
-//         // r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
-//         r'^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
-
-//     RegExp regex = RegExp(pattern.toString());
-//     if (value.isEmpty) {
-//       return 'Please enter password';
-//     } else {
-//       if (!regex.hasMatch(value)) {
-//         return 'Password must contain at least one lowercase letter, one uppercase letter, one number and one special character';
-//       } else {
-//         return null;
-//       }
-//     }
-//   }
-
-//   static removePlusSign(String number) {
-//     return number.replaceAll('+', '');
-//   }
-// }
+  static String convertMetersPerSecondToKilometersPerHour(
+      double speedInMetersPerSecond) {
+    return "${(speedInMetersPerSecond * 3.6).toStringAsFixed(2)} km/hr";
+  }
+}

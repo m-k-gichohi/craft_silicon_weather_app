@@ -22,7 +22,9 @@ class MyApp extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    requestPermissions(ref:ref,);
+    requestPermissions(
+      ref: ref,
+    );
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: SystemUiOverlay.values);

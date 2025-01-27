@@ -2,7 +2,7 @@ import 'package:craft_silicon/common/helpers/interceptors/dio_logging.dart';
 import 'package:craft_silicon/common/keys/keys_env.dart';
 import 'package:craft_silicon/common/utils/colors.dart';
 import 'package:craft_silicon/common/utils/url.dart';
-import 'package:craft_silicon/features/home/model/current_weather.dart';
+import 'package:craft_silicon/features/home/model/five_day_weather_data.dart';
 import 'package:craft_silicon/features/home/repositories/current_location_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
@@ -11,18 +11,18 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'get_current_weather_provider.g.dart';
+part 'get_5_day_weather_provider.g.dart';
 
 @Riverpod(keepAlive: true)
-class GetCurrentWeatherData extends _$GetCurrentWeatherData {
-  FutureOr<CurrentWeatherDataModel> getCurrentWeather() async {
+class GetFiveDaysWeatherData extends _$GetFiveDaysWeatherData {
+  FutureOr<FiveDayWeatherDataModel> getWeather() async {
     // Get current location from the location provider
     final position = ref.watch(currentLocationStateProvider);
 
     var url =
-        '${AppLicationUrls.baseUrl}weather?lat=${position.phonePosition!.latitude}&lon=${position.phonePosition!.longitude}&appid=${EnvKeys.apiKey}&units=metric';
+        '${AppLicationUrls.baseUrl}forecast?lat=${position.phonePosition!.latitude}&lon=${position.phonePosition!.longitude}&appid=${EnvKeys.apiKey}&units=metric';
 
-    CurrentWeatherDataModel weatherData = CurrentWeatherDataModel();
+    FiveDayWeatherDataModel weathertData = FiveDayWeatherDataModel();
 
     final dio = Dio();
     dio.interceptors.add(Logging());
@@ -57,7 +57,7 @@ class GetCurrentWeatherData extends _$GetCurrentWeatherData {
         ),
       );
 
-      weatherData = CurrentWeatherDataModel.fromJson(res.data);
+      weathertData = FiveDayWeatherDataModel.fromJson(res.data);
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionTimeout) {
         // okotaPayLocator<NavigationService>()
@@ -96,11 +96,11 @@ class GetCurrentWeatherData extends _$GetCurrentWeatherData {
       );
     }
 
-    return weatherData;
+    return weathertData;
   }
 
   @override
-  FutureOr<CurrentWeatherDataModel> build() async {
-    return getCurrentWeather();
+  FutureOr<FiveDayWeatherDataModel> build() async {
+    return getWeather();
   }
 }
