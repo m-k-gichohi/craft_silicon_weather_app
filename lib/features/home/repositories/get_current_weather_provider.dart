@@ -16,11 +16,10 @@ part 'get_current_weather_provider.g.dart';
 @Riverpod(keepAlive: true)
 class GetCurrentWeatherData extends _$GetCurrentWeatherData {
   FutureOr<CurrentWeatherDataModel> getCurrentWeather() async {
-    // Get current location from the location provider
     final position = ref.watch(currentLocationStateProvider);
 
     var url =
-        '${AppLicationUrls.baseUrl}weather?lat=${position.phonePosition!.latitude}&lon=${position.phonePosition!.longitude}&appid=${EnvKeys.apiKey}&units=metric';
+        '${AppLicationUrls.baseUrl}weather?lat=${position.latitude}&lon=${position.longitude}&appid=${EnvKeys.apiKey}&units=metric';
 
     CurrentWeatherDataModel weatherData = CurrentWeatherDataModel();
 
@@ -60,9 +59,6 @@ class GetCurrentWeatherData extends _$GetCurrentWeatherData {
       weatherData = CurrentWeatherDataModel.fromJson(res.data);
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionTimeout) {
-        // okotaPayLocator<NavigationService>()
-        //     .showSnackBar(message: 'Request timed out.');
-
         Fluttertoast.showToast(
           msg: "Request timed out.",
           toastLength: Toast.LENGTH_SHORT,
@@ -83,7 +79,6 @@ class GetCurrentWeatherData extends _$GetCurrentWeatherData {
               backgroundColor: CRAFTCOLORERROR,
               textColor: CRAFTCOLORWHITE,
             );
-           
           }
         }
       }
@@ -97,6 +92,14 @@ class GetCurrentWeatherData extends _$GetCurrentWeatherData {
     }
 
     return weatherData;
+  }
+
+  updateData() async {
+    state = AsyncValue.loading();
+
+    state = await AsyncValue.guard(() async {
+      return getCurrentWeather();
+    });
   }
 
   @override

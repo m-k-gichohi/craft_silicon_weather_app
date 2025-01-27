@@ -1,9 +1,11 @@
-import 'package:geolocator/geolocator.dart';
+class CoordinatesLocationModel {
+  final double? latitude;
 
-class PickUpLocationModel {
-  final Position? phonePosition;
-  final String? userAddress;
+  final double? longitude;
 
   // PickUpLocationModel(this.userAddress);
-  PickUpLocationModel({this.phonePosition, this.userAddress});
+  CoordinatesLocationModel({
+     this.longitude,
+     this.latitude,
+  });
 }

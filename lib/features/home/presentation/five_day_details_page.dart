@@ -1,11 +1,11 @@
+import 'package:craft_silicon/common/common_widgets.dart';
 import 'package:craft_silicon/common/helpers/date_time_helpers.dart';
 import 'package:craft_silicon/common/helpers/helpers.dart';
 import 'package:craft_silicon/common/helpers/sizes.dart';
 import 'package:craft_silicon/common/utils/colors.dart';
 import 'package:craft_silicon/common/utils/textstyle.dart';
 import 'package:craft_silicon/features/home/model/five_day_weather_data.dart';
-import 'package:craft_silicon/features/home/presentation/five_days_page.dart';
-import 'package:craft_silicon/features/home/presentation/home_page.dart';
+import 'package:craft_silicon/features/home/model/group_weather_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';

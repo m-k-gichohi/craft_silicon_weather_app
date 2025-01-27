@@ -1,12 +1,11 @@
+import 'package:craft_silicon/common/helpers/create_complex_json.dart';
 import 'package:craft_silicon/common/helpers/sizes.dart';
 import 'package:craft_silicon/common/utils/colors.dart';
 import 'package:craft_silicon/common/utils/textstyle.dart';
-import 'package:craft_silicon/features/home/model/five_day_weather_data.dart';
 import 'package:craft_silicon/features/home/presentation/five_day_details_page.dart';
 import 'package:craft_silicon/features/home/repositories/get_5_day_weather_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 
 class ViewFiveDaysWeatherPage extends HookConsumerWidget {
   const ViewFiveDaysWeatherPage({super.key});
@@ -119,29 +118,4 @@ class ViewFiveDaysWeatherPage extends HookConsumerWidget {
       ),
     );
   }
-}
-
-List<GroupedWeatherData> groupWeatherData(List<ListElement> weatherList) {
-  Map<String, List<ListElement>> tempGrouped = {};
-
-  for (var entry in weatherList) {
-    DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(entry.dt! * 1000);
-    String dateKey = DateFormat('EEEE, MMMM d, yyyy').format(dateTime);
-
-    tempGrouped.putIfAbsent(dateKey.toString(), () => []).add(entry);
-  }
-
-  return tempGrouped.entries
-      .map((entry) => GroupedWeatherData(date: entry.key, entries: entry.value))
-      .toList();
-}
-
-class GroupedWeatherData {
-  final String date;
-  final List<ListElement> entries;
-
-  GroupedWeatherData({
-    required this.date,
-    required this.entries,
-  });
 }

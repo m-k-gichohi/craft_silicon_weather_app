@@ -16,11 +16,10 @@ part 'get_5_day_weather_provider.g.dart';
 @Riverpod(keepAlive: true)
 class GetFiveDaysWeatherData extends _$GetFiveDaysWeatherData {
   FutureOr<FiveDayWeatherDataModel> getWeather() async {
-    // Get current location from the location provider
     final position = ref.watch(currentLocationStateProvider);
 
     var url =
-        '${AppLicationUrls.baseUrl}forecast?lat=${position.phonePosition!.latitude}&lon=${position.phonePosition!.longitude}&appid=${EnvKeys.apiKey}&units=metric';
+        '${AppLicationUrls.baseUrl}forecast?lat=${position.latitude}&lon=${position.longitude}&appid=${EnvKeys.apiKey}&units=metric';
 
     FiveDayWeatherDataModel weathertData = FiveDayWeatherDataModel();
 
@@ -60,9 +59,6 @@ class GetFiveDaysWeatherData extends _$GetFiveDaysWeatherData {
       weathertData = FiveDayWeatherDataModel.fromJson(res.data);
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionTimeout) {
-        // okotaPayLocator<NavigationService>()
-        //     .showSnackBar(message: 'Request timed out.');
-
         Fluttertoast.showToast(
           msg: "Request timed out.",
           toastLength: Toast.LENGTH_SHORT,
@@ -83,7 +79,6 @@ class GetFiveDaysWeatherData extends _$GetFiveDaysWeatherData {
               backgroundColor: CRAFTCOLORERROR,
               textColor: CRAFTCOLORWHITE,
             );
-           
           }
         }
       }

@@ -1,12 +1,14 @@
 import 'dart:developer';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:craft_silicon/common/common_widgets.dart';
 import 'package:craft_silicon/common/helpers/date_time_helpers.dart';
 import 'package:craft_silicon/common/helpers/helpers.dart';
 import 'package:craft_silicon/common/helpers/sizes.dart';
 import 'package:craft_silicon/common/utils/colors.dart';
 import 'package:craft_silicon/common/utils/textstyle.dart';
 import 'package:craft_silicon/features/home/presentation/five_days_page.dart';
+import 'package:craft_silicon/features/home/presentation/search/search_page.dart';
 import 'package:craft_silicon/features/home/repositories/current_location_provider.dart';
 import 'package:craft_silicon/features/home/repositories/get_current_weather_provider.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +26,6 @@ class HomePage extends HookConsumerWidget {
 
     final currentLoader = ref.watch(currentLoaderProvider);
 
-
     final currentPageDescription = useState("");
 
     return Scaffold(
@@ -32,7 +33,11 @@ class HomePage extends HookConsumerWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const SearchPage()),
+            );
+          },
           icon: Icon(MdiIcons.magnify),
         ),
         centerTitle: true,
@@ -290,7 +295,13 @@ class HomePage extends HookConsumerWidget {
                           );
                         },
                         loading: () =>
-                            Center(child: CircularProgressIndicator()),
+                            Center(child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                CircularProgressIndicator(),
+                              ],
+                            )),
                         error: (error, stack) {
                           return Center(
                             child: Text(
@@ -306,59 +317,4 @@ class HomePage extends HookConsumerWidget {
       ),
     );
   }
-}
-
-icon2ColumnData(
-    {required IconData icon, required String title, required String subTitle}) {
-  return Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(10.0),
-        bottomRight: Radius.circular(20.0),
-      ),
-      color: CRAFTCOLORWHITE,
-      boxShadow: [
-        BoxShadow(
-          color: CRAFTCOLORSUCCESS.withValues(alpha: 0.5),
-          spreadRadius: 2,
-          blurRadius: 2,
-          offset: Offset(0, 3),
-        ),
-      ],
-    ),
-    child: Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: AppSizes.appHeight(
-          20,
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon),
-          Gap(
-            AppSizes.appWidth(
-              10,
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: fontSize10400,
-              ),
-              Text(
-                subTitle,
-                style: fontSize14400.copyWith(
-                  color: CRAFTCOLORSUCCESS,
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
-    ),
-  );
 }

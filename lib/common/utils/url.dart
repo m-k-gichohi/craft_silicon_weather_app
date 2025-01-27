@@ -1,8 +1,10 @@
 
 class AppLicationUrls {
+   static const mainUrl =
+    "https://api.openweathermap.org/";
 
   static const baseUrl =
-    "https://api.openweathermap.org/data/2.5/";
+    "${mainUrl}data/2.5/";
 
   
 }
